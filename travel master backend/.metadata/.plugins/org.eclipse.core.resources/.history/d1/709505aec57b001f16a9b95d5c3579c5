@@ -1,0 +1,30 @@
+package travelmaster.pojo;
+
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "expenses")
+public class Expense {
+
+	private Long expenseId;
+
+	private Double amount;
+
+	private String category;
+
+	private String description;
+
+	private LocalDateTime date;
+
+	private LocalDateTime createdAt;
+
+	private LocalDateTime updatedAt;
+
+	// Default constructor
+	public Expense() {
+	}
+
+}

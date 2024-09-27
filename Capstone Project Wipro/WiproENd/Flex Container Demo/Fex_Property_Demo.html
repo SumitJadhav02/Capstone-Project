@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Property Demo</title>
+    <style>
+        .container {
+            display: flex; /* Display flex container */
+            border: 2px solid #333; /* Border for visualization */
+            margin-bottom: 20px; /* Margin for spacing */
+        }
+ 
+        .flex-item {
+            background-color: dodgerblue; /* Background color */
+            color: white; /* Text color */
+            padding: 10px; /* Padding for content */
+            margin: 5px; /* Margin for spacing */
+            display: flex; /* Nested flex container */
+            justify-content: center; /* Horizontally center content */
+            align-items: center; /* Vertically center content */
+        }
+ 
+        .item-1 {
+            flex: 1; 
+        }
+ 
+        .item-2 {
+            flex: 2 ;
+        }
+ 
+        .item-3 {
+            flex: 3 ; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flex-item item-1">1</div> 
+        <div class="flex-item item-2">2</div> 
+        <div class="flex-item item-3">3</div> 
+</body>
+</html>

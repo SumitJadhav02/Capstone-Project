@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Container Demo</title>
+    <style>
+        .container {
+            border: 2px solid #333;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+ 
+        .flex-container {
+            display: flex; /*1. takes up the full width available by default */
+            justify-content: space-around;
+        }
+ 
+        .inline-flex-container {
+            display: inline-flex; /* 1. allows item in  same line and only taking up as much width as necessary.*/
+            justify-content: space-between;
+        }
+ 
+.item {
+            width: 100px;
+            height: 100px;
+            background-color: dodgerblue;
+            margin: 5px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Flex Container</h2>
+        <div class="flex-container">
+            <div class="item">Java</div>
+            <div class="item">Angular</div>
+            <div class="item">Spring</div>
+        </div>
+    </div>
+ 
+    <div class="container">
+        <h2>Inline Flex Container</h2>
+        <div class="inline-flex-container">
+            <div class="item">Java</div>
+            <div class="item">Angular</div>
+            <div class="item">Spring</div>
+        </div>
+    </div>
+</body>
+</html>

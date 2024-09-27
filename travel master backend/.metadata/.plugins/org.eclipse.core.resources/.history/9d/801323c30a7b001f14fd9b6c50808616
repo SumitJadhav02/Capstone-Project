@@ -1,0 +1,27 @@
+package travelmaster.dto;
+
+import java.time.LocalDateTime;
+
+public class ItineraryItemDTO {
+    private Long itemId;
+    private Long itineraryId; // Reference to Itinerary
+    private Long bookingId; // Reference to Booking
+    private String itemType;
+    private LocalDateTime itemDate;
+    private Double cost;
+
+    // Constructors
+    public ItineraryItemDTO() {}
+
+    public ItineraryItemDTO(Long itemId, Long itineraryId, Long bookingId, String itemType, LocalDateTime itemDate, Double cost) {
+        this.itemId = itemId;
+        this.itineraryId = itineraryId;
+        this.bookingId = bookingId;
+        this.itemType = itemType;
+        this.itemDate = itemDate;
+        this.cost = cost;
+    }
+
+    // Getters and Setters
+    // (Omitted for brevity; include as needed)
+}

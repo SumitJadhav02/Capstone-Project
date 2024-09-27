@@ -1,0 +1,53 @@
+package travelmaster.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import travelmaster.model.Expense;
+import travelmaster.service.ExpenseService;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/expenses")
+public class ExpenseController {
+
+    @Autowired
+    private ExpenseService expenseService;
+
+    // Get all expenses
+    @GetMapping
+    public ResponseEntity<List<Expense>> getAllExpenses() {
+        List<Expense> expenses = expenseService.getAllExpenses();
+        return ResponseEntity.ok(expenses);
+    }
+
+    // Get expense by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Expense> getExpenseById(@PathVariable Long id) {
+        Optional<Expense> expense = expenseService.getExpenseById(id);
+        return expense.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Create a new expense
+    @PostMapping
+    public ResponseEntity<Expense> createExpense(@RequestBody Expense expense) {
+        Expense createdExpense = expenseService.createExpense(expense);
+        return ResponseEntity.ok(createdExpense);
+    }
+
+    // Update an existing expense
+    @PutMapping("/{id}")
+    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody Expense expenseDetails) {
+        Optional<Expense> updatedExpense = expenseService.updateExpense(id, expenseDetails);
+        return updatedExpense.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Delete an expense
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
+        boolean isDeleted = expenseService.deleteExpense(id);
+        return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+}

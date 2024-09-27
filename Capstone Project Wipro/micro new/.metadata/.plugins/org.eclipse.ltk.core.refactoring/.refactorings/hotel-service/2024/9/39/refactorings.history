@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Hotel.java&apos; to &apos;booking-service/src/main/java/travelmaster.pojo&apos;&#x0D;&#x0A;- Original project: &apos;hotel-service&apos;&#x0D;&#x0A;- Destination element: &apos;booking-service/src/main/java/travelmaster.pojo&apos;&#x0D;&#x0A;- Original element: &apos;travelmaster.model.Hotel.java&apos;" description="Copy compilation unit" destination="=booking-service/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;travelmaster.pojo" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;travelmaster.model{Hotel.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1727247418153" units="1" version="1.0"/>
+</session>

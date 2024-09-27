@@ -1,0 +1,64 @@
+package travelmaster.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import travelmaster.model.Itinerary;
+import travelmaster.model.User; // Make sure to import User
+import travelmaster.repository.ItineraryRepository;
+import travelmaster.repository.UserRepository; // Import UserRepository to fetch user
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ItineraryService {
+
+    @Autowired
+    private ItineraryRepository itineraryRepository;
+
+    @Autowired
+    private UserRepository userRepository; // Add UserRepository to fetch users
+
+    // Get all itineraries
+    public List<Itinerary> getAllItineraries() {
+        return itineraryRepository.findAll();
+    }
+
+    // Get itinerary by ID
+    public Optional<Itinerary> getItineraryById(Long id) {
+        return itineraryRepository.findById(id);
+    }
+
+    // Create a new itinerary
+    public Itinerary createItinerary(Itinerary itinerary) {
+        // Fetch the user to associate with the itinerary
+        User user = userRepository.findById(itinerary.getUser().getUserId()) // Make sure to have the user set in itinerary
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        itinerary.setUser(user);
+        return itineraryRepository.save(itinerary);
+    }
+
+    // Update an existing itinerary
+    public Optional<Itinerary> updateItinerary(Long id, Itinerary itineraryDetails) {
+        return itineraryRepository.findById(id).map(itinerary -> {
+            // Optional: Fetch and set the user to ensure it's valid
+            User user = userRepository.findById(itineraryDetails.getUser().getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+            itinerary.setUser(user);
+
+            itinerary.setBookings(itineraryDetails.getBookings());
+            itinerary.setStartDate(itineraryDetails.getStartDate());
+            itinerary.setEndDate(itineraryDetails.getEndDate());
+            itinerary.setTotalCost(itineraryDetails.getTotalCost());
+            return itineraryRepository.save(itinerary);
+        });
+    }
+
+    // Delete an itinerary
+    public boolean deleteItinerary(Long id) {
+        return itineraryRepository.findById(id).map(itinerary -> {
+            itineraryRepository.delete(itinerary);
+            return true;
+        }).orElse(false);
+    }
+}

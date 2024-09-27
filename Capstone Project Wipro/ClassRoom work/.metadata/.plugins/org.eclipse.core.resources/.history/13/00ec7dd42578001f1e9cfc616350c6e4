@@ -1,0 +1,9 @@
+package travelmaster.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import travelmaster.model.Flight;
+
+public interface HotelRepository extends JpaRepository<Flight, Long> {
+
+}

@@ -1,0 +1,28 @@
+package travelmaster.pojo;
+
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class User {
+
+	private Long id;
+	private String username;
+
+	private String password;
+
+	private String email;
+
+	private String firstName;
+
+	private String lastName;
+
+	private String role; // e.g., "Traveler", "Admin"
+
+	private LocalDateTime createdAt;
+
+	private LocalDateTime updatedAt;
+
+}

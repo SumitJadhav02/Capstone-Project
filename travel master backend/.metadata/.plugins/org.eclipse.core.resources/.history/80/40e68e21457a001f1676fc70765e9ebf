@@ -1,0 +1,28 @@
+package travelmaster.dto;
+
+import java.time.LocalDateTime;
+
+public class ExpenseDTO {
+
+    private Long expenseId;
+    private Long userId;  // Include only necessary data
+    private Double amount;
+    private String category;
+    private String description;
+    private LocalDateTime date;
+
+    // Constructors, Getters, and Setters
+
+    public ExpenseDTO(Long expenseId, Long userId, Double amount, String category, String description, LocalDateTime date) {
+        this.expenseId = expenseId;
+        this.userId = userId;
+        this.amount = amount;
+        this.category = category;
+        this.description = description;
+        this.date = date;
+    }
+
+    // Getters and Setters
+    // ...
+}
+

@@ -1,0 +1,5 @@
+package travelmaster.controller;
+
+public class BookingController {
+
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+Assignment: Accept two number from user using dialog box and  
+display the multiplication as output in a H3 tag dynamically.
+ 
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Test Multiplication</title>
+    <script>
+
+        function multiply()
+        {
+
+        alert('Welcome to multiplication assignment');
+
+        let num1 = prompt('Enter the first number :',10)
+        let num2 = prompt('Enter the Second number :',10)
+
+        var userPreference;
+        var result;
+        if(confirm('Do you want to multiply both number ?') == true)
+        {
+            userPreference = "Machine start multiplying both the numbers....";
+            result = num1 * num2;
+
+            console.log(result);
+            document.getElementById("ans").innerHTML = `The result of the multiplication is: ${result}`;
+        }
+        else
+        {
+            userPreference = "Machine Ended multiplication Task....";
+            document.getElementById("ans").innerHTML = userPreference;
+        }
+    }
+    </script>
+</head>
+<body>
+    <button onclick="multiply()">Start Multiplication</button>
+    <h3 id="ans"></h3>
+</body>
+</html>

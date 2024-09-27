@@ -1,0 +1,5 @@
+package travelmaster.config;
+
+public class SwaggerConfig {
+
+}

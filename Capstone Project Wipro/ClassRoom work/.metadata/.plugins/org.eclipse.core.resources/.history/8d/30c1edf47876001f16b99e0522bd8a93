@@ -1,0 +1,17 @@
+spring.application.name=sping-hello-project-demo-main
+
+# Database configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/SpringProjectDemo
+spring.datasource.username=root
+spring.datasource.password=0212
+
+## Hibernate Properties
+# The SQL dialect makes Hibernate generate better SQL for the chosen database
+#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+spring.jpa.properties.hibernate.dialect =org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=update
+
+
+server.port = 8761
+eureka.client.register-with-eureka=false  
+eureka.client.fetch-registry=false  

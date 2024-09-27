@@ -1,0 +1,5 @@
+package com.wipro.swaggerconfig;
+
+public class SwaggerConfig {
+
+}

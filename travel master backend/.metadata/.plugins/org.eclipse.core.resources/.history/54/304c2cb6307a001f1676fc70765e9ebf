@@ -1,0 +1,84 @@
+package travelmaster.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import travelmaster.dto.Expense;
+import travelmaster.exception.ExpenseNotFoundException;
+import travelmaster.model.Expense;
+import travelmaster.repository.ExpenseRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class ExpenseService {
+
+    @Autowired
+    private ExpenseRepository expenseRepository;
+
+    // Get all expenses
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll()
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    // Get expense by ID
+    public Expense getExpenseById(Long id) {
+        Expense expense = expenseRepository.findById(id)
+                .orElseThrow(() -> new ExpenseNotFoundException("Expense not found with ID: " + id));
+        return convertToDto(expense);
+    }
+
+    // Create a new expense
+    public Expense createExpense(Expense Expense) {
+        Expense expense = convertToEntity(Expense);
+        Expense savedExpense = expenseRepository.save(expense);
+        return convertToDto(savedExpense);
+    }
+
+    // Update an existing expense
+    public Expense updateExpense(Long id, Expense expenseDetails) {
+        return expenseRepository.findById(id).map(expense -> {
+            expense.setAmount(expenseDetails.getAmount());
+            expense.setCategory(expenseDetails.getCategory());
+            expense.setDescription(expenseDetails.getDescription());
+            expense.setDate(expenseDetails.getDate());
+            Expense updatedExpense = expenseRepository.save(expense);
+            return convertToDto(updatedExpense);
+        }).orElseThrow(() -> new ExpenseNotFoundException("Expense not found with ID: " + id));
+    }
+
+    // Delete an expense
+    public void deleteExpense(Long id) {
+        Expense expense = expenseRepository.findById(id)
+                .orElseThrow(() -> new ExpenseNotFoundException("Expense not found with ID: " + id));
+        expenseRepository.delete(expense);
+    }
+
+    // Convert Expense entity to DTO
+    private Expense convertToDto(Expense expense) {
+        Expense dto = new Expense();
+        dto.setExpenseId(expense.getExpenseId());
+        dto.setUserId(expense.getUser().getUserId());
+        dto.setAmount(expense.getAmount());
+        dto.setCategory(expense.getCategory());
+        dto.setDescription(expense.getDescription());
+        dto.setDate(expense.getDate());
+        dto.setCreatedAt(expense.getCreatedAt());
+        dto.setUpdatedAt(expense.getUpdatedAt());
+        return dto;
+    }
+
+    // Convert DTO to Expense entity
+    private Expense convertToEntity(Expense Expense) {
+        Expense expense = new Expense();
+        // Assuming you set the User entity separately
+        expense.setAmount(Expense.getAmount());
+        expense.setCategory(Expense.getCategory());
+        expense.setDescription(Expense.getDescription());
+        expense.setDate(Expense.getDate());
+        return expense;
+    }
+}

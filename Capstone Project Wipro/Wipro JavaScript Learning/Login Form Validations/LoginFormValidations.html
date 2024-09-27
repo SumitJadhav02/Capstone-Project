@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice for Login Form Validations</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginform" style="justify-content: center; ">
+         <h2>Login Form</h2>
+         <form class="login">
+
+            <div>
+               <label for="email" name="email">Email :</label>
+               <input type="text" id="email" name="email">
+               <span id="emailError" class="error"></span>
+            </div>
+
+            <div>
+                <label for="password" name="password">Password :</label>
+                <input type="password" id="password" name="password">
+                <span id="passwordError" class="error"></span>
+            </div>
+
+            <button type="submit">Login</button>
+         </form>
+
+
+         <script>
+            document.getElementById("loginform").addEventListener("submit", function(event)
+            {
+               event.preventDefault();
+
+               document.getElementById("emailError").textContent="";
+               document.getElementById("passwordError").textContent="";
+
+               var emailInput=document.getElementById("email").value;
+               var passwordInput = document.getElementById("password").value;
+
+               var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+               var passwordPattern = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/;
+
+                // Validate email
+            if (!emailPattern.test(emailInput)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address";
+                return; // Stop form submission if email is invalid
+            }
+            // Validate password
+            if (!passwordPattern.test(passwordInput)) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters long and contain at least one letter and one number";
+                return; 
+            }
+            console.log("Email:", emailInput);
+            console.log("Password:", passwordInput);
+     
+        });
+    </script>
+</body>
+</html>

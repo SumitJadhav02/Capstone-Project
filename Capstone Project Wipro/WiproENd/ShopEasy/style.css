@@ -1,0 +1,106 @@
+/* Header and Navigation Styling */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 150px; 
+    background-color: #f8f8f8;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    margin-right: 10px; 
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+
+
+/* Product Section Styling */
+.products {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.product-item {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+}
+
+.product-item img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-details h3 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+}
+
+.product-details p {
+    margin: 0 0 10px;
+}
+
+.product-details .price {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-details input {
+    width: 60px;
+    margin-right: 10px;
+}
+
+.product-details button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-details button:hover {
+    background-color: #45a049;
+}

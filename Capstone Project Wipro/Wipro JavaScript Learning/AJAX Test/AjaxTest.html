@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Example</title>
+</head>
+<body>
+    <button id="loadData">Load Data</button>
+    <div id="result"></div>
+ 
+    <script>
+        document.getElementById('loadData').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'products.json', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        document.getElementById('result').innerText = xhr.responseText;
+                    } else {
+                        console.error('Error:', xhr.statusText);
+                    }
+                }
+            };
+        xhr.send();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+package travelmaster.dto;
+
+public class HotelDTO {
+    private Long hotelId;
+    private String hotelName;
+    private String location;
+    private String amenities;
+
+    // Getters and Setters
+    // ...
+}

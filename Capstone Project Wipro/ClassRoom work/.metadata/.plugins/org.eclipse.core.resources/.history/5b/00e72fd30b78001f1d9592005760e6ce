@@ -1,0 +1,5 @@
+package travelmaster.repository;
+
+public interface UserRepository {
+
+}

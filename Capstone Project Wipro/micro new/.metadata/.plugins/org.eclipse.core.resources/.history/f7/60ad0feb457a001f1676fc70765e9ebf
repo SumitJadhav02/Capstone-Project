@@ -1,0 +1,9 @@
+package travelmaster.dto;
+
+import java.time.LocalDateTime;
+
+public class ExpenseDTO {
+
+  
+}
+

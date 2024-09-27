@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>  rotate3d() Method</title>
+<style>
+.container{
+    margin: 50px;
+    width:153px;
+    height:103px;
+    background: #f0f5d8;
+}
+.transformed {
+    -webkit-transform: rotate3d(0, 1, 0, 60deg); 
+    transform: rotate3d(20, 80, 50, 60deg); 
+}
+</style>
+</head>
+<body>
+    <h2>Before Rotation:</h2>
+    <div class="container">
+        <img src="mitra.jpeg" alt="Friends">
+    </div>
+    <h2>After Rotation: </h2><br>
+    <div class="container">
+        <img src="mitra.jpeg" class="transformed"  alt="Friends">
+    </div>
+</body>
+</html>

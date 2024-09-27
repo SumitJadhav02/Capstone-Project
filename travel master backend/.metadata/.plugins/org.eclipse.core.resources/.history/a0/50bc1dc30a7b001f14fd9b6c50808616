@@ -1,0 +1,9 @@
+package travelmaster.dto;
+
+public class ItineraryDTO {
+    private Long itineraryId;
+    private String details;
+
+    // Getters and Setters
+    // ...
+}

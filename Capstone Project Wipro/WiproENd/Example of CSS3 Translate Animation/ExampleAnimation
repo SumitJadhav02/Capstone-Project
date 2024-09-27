@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Example Animation</title>
+<style>
+    .box {
+        margin: 50px;
+        width:153px;
+        height:103px;
+        background: url("mitra.jpeg") no-repeat;
+        background-size: 153px 103px; 
+          position: relative;
+        -webkit-animation-name: moveit;
+           -webkit-animation-duration: 12s;
+        animation-name: moveit;
+        animation-duration: 8s;
+        animation-play-state: running; 
+        animation-direction: normal; 
+       }   
+        @-webkit-keyframes moveit {
+        from {left: 0;}
+        to {left: 50%;}
+    }
+
+    @keyframes moveit {
+        from {left: 0;}
+        to {left: 80%;}
+    }
+</style>
+</head>
+<body>
+    <p><strong>Note  :</strong> Animatin </p>
+    <div class="box"></div>
+</body>
+</html>

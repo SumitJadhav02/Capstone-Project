@@ -1,0 +1,13 @@
+package travelmaster.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import travelmaster.pojo.Hotel;
+
+@FeignClient(name = "hotel-service", url = "${hotel-service.url}")
+public interface HotelClient {
+
+    @GetMapping("/api/hotels/{id}")
+    Hotel getHotelById(@PathVariable("id") Long id);  // Return Hotel object
+}

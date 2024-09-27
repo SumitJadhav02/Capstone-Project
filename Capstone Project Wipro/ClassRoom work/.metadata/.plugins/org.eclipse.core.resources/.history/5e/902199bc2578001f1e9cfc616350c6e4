@@ -1,0 +1,54 @@
+package travelmaster.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import travelmaster.model.Flight;
+import travelmaster.repository.FlightRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class HotelRepository {
+
+    @Autowired
+    private FlightRepository flightRepository;
+
+    // Get all flights
+    public List<Flight> getAllFlights() {
+        return flightRepository.findAll();
+    }
+
+    // Get flight by ID
+    public Optional<Flight> getFlightById(Long id) {
+        return flightRepository.findById(id);
+    }
+
+    // Create a new flight
+    public Flight createFlight(Flight flight) {
+        return flightRepository.save(flight);
+    }
+
+    // Update an existing flight
+    public Optional<Flight> updateFlight(Long id, Flight flightDetails) {
+        return flightRepository.findById(id).map(flight -> {
+            flight.setFlightNumber(flightDetails.getFlightNumber());
+            flight.setDepartureAirport(flightDetails.getDepartureAirport());
+            flight.setArrivalAirport(flightDetails.getArrivalAirport());
+            flight.setDepartureTime(flightDetails.getDepartureTime());
+            flight.setArrivalTime(flightDetails.getArrivalTime());
+            flight.setAirline(flightDetails.getAirline());
+            flight.setPrice(flightDetails.getPrice());
+            flight.setUpdatedAt(flightDetails.getUpdatedAt());
+            return flightRepository.save(flight);
+        });
+    }
+
+    // Delete a flight
+    public boolean deleteFlight(Long id) {
+        return flightRepository.findById(id).map(flight -> {
+            flightRepository.delete(flight);
+            return true;
+        }).orElse(false);
+    }
+}

@@ -1,0 +1,54 @@
+package travelmaster.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import travelmaster.model.Flight;
+import travelmaster.service.FlightService;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/flights")
+public class FlightController {
+
+    @Autowired
+    private FlightService flightService;
+
+    // Get all flights
+    @GetMapping
+    public ResponseEntity<List<Flight>> getAllFlights() {
+        List<Flight> flights = flightService.getAllFlights();
+        return ResponseEntity.ok(flights);
+    }
+
+    // Get flight by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Flight> getFlightById(@PathVariable Long id) {
+        Optional<Flight> flight = flightService.getFlightById(id);
+        return flight.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Create a new flight
+    @PostMapping
+    public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) {
+        Flight createdFlight = flightService.createFlight(flight);
+        return ResponseEntity.ok(createdFlight);
+    }
+
+    // Update an existing flight
+    @PutMapping("/{id}")
+    public ResponseEntity<Flight> updateFlight(@PathVariable Long id, @RequestBody Flight flightDetails) {
+        Optional<Flight> updatedFlight = flightService.updateFlight(id, flightDetails);
+        return updatedFlight.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Delete a flight
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFlight(@PathVariable Long id) {
+        boolean isDeleted = flightService.deleteFlight(id);
+        return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+}
+

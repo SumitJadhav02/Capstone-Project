@@ -1,0 +1,58 @@
+package travelmaster.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import travelmaster.model.ItineraryItem;
+import travelmaster.service.ItineraryItemService;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/itinerary-items")
+public class ItineraryItemController {
+
+    @Autowired
+    private ItineraryItemService itineraryItemService;
+
+    // Get all itinerary items
+    @GetMapping
+    public List<ItineraryItem> getAllItineraryItems() {
+        return itineraryItemService.getAllItineraryItems();
+    }
+
+    // Get a single itinerary item by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<ItineraryItem> getItineraryItemById(@PathVariable Long id) {
+        Optional<ItineraryItem> itineraryItem = itineraryItemService.getItineraryItemById(id);
+        return itineraryItem.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Create a new itinerary item
+    @PostMapping
+    public ItineraryItem createItineraryItem(@RequestBody ItineraryItem itineraryItem) {
+        return itineraryItemService.createItineraryItem(itineraryItem);
+    }
+
+    // Update an existing itinerary item
+    @PutMapping("/{id}")
+    public ResponseEntity<ItineraryItem> updateItineraryItem(
+            @PathVariable Long id,
+            @RequestBody ItineraryItem itineraryItemDetails
+    ) {
+        Optional<ItineraryItem> updatedItem = itineraryItemService.updateItineraryItem(id, itineraryItemDetails);
+        return updatedItem.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Delete an itinerary item
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItineraryItem(@PathVariable Long id) {
+        boolean deleted = itineraryItemService.deleteItineraryItem(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}

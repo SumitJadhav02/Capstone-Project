@@ -1,0 +1,16 @@
+package travelmaster.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import travelmaster.pojo.User;
+
+// fetch expenses associated with a specific user
+@FeignClient(name = "user-service", url = "${user-service:http://localhost:8001}")
+
+public interface UserClient {
+
+    @GetMapping("/auth/{userId}")
+    User getUserById(@PathVariable("userId") Long userId);
+}

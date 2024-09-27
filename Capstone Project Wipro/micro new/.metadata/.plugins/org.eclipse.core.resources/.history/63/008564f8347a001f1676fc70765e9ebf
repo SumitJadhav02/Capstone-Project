@@ -1,0 +1,58 @@
+package travelmaster.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import travelmaster.model.Expense;
+import travelmaster.model.User;
+import travelmaster.repository.ExpenseRepository;
+import travelmaster.repository.UserRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ExpenseService {
+
+    @Autowired
+    private ExpenseRepository expenseRepository;
+
+    @Autowired
+    private UserRepository userRepository; // Inject UserRepository to find user by ID
+
+    // Get all expenses
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll();
+    }
+
+    // Get expense by ID
+    public Expense getExpenseById(Long id) {
+        return expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Expense not found"));
+    }
+
+    // Create a new expense
+    public Expense createExpense(Expense expense) {
+        // Assuming that the User must be set before creating the Expense
+        Optional<User> user = userRepository.findById(expense.getUser().getUserId());
+        if (user.isPresent()) {
+            expense.setUser(user.get());
+            return expenseRepository.save(expense);
+        } else {
+            throw new RuntimeException("User not found");
+        }
+    }
+
+    // Update an existing expense
+    public Expense updateExpense(Long id, Expense expenseDetails) {
+        Expense existingExpense = getExpenseById(id);
+        existingExpense.setAmount(expenseDetails.getAmount());
+        existingExpense.setCategory(expenseDetails.getCategory());
+        existingExpense.setDescription(expenseDetails.getDescription());
+        existingExpense.setDate(expenseDetails.getDate());
+        return expenseRepository.save(existingExpense);
+    }
+
+    // Delete an expense
+    public void deleteExpense(Long id) {
+        expenseRepository.deleteById(id);
+    }
+}

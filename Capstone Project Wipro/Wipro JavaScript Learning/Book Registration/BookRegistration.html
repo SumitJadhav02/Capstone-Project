@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #book {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book List</h1>
+    <ul id="book"></ul>
+ 
+    <script>
+        const books = [
+            { name: "Core Java", rating: "5" },
+            { name: "Angular", rating: "4" }
+        ];
+ 
+        function registerBook(book, callback) {
+            setTimeout(() => {
+                books.push(book);
+                if (callback) {
+                    callback(); // Call the callback function after adding the book
+                }
+            }, 3000); // Simulate a delay of 3 seconds
+        }
+ 
+        function getBooks() {
+            setTimeout(() => {
+                let str = "";
+                books.forEach(book => {
+                    str += `<li>${book.name} - Rating: ${book.rating}</li>`;
+                });
+                document.getElementById('book').innerHTML = str;
+                console.log("Books have been displayed: " + str);
+            }, 1000); // Simulate a delay of 1 second
+        }
+ 
+        const newBook = { name: "JavaScript", rating: "4" };
+ 
+        // Register the new book and then display the books
+        registerBook(newBook, getBooks);
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+package travelmaster.model;
+
+import jakarta.persistence.*;
+import travelmaster.pojo.Flight;
+import travelmaster.pojo.Hotel;
+import travelmaster.pojo.Itinerary;
+import travelmaster.pojo.User;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "bookings")
+public class Booking {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "booking_id")
+	private Long bookingId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "flight_id", nullable = true)
+	private Flight flight;
+
+	@ManyToOne
+	@JoinColumn(name = "hotel_id", nullable = true)
+	private Hotel hotel;
+
+	@ManyToOne
+	@JoinColumn(name = "itinerary_id", nullable = true)
+	private Itinerary itinerary;
+
+	@Column(name = "booking_date", nullable = false)
+	private LocalDateTime bookingDate;
+
+	@Column(name = "status", nullable = false)
+	private String status;
+
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at", nullable = false)
+	private LocalDateTime updatedAt;
+
+}

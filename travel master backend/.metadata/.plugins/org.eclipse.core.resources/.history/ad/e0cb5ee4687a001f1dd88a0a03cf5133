@@ -1,0 +1,130 @@
+package travelmaster.service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import travelmaster.client.BookingClient;
+import travelmaster.client.HotelClient;
+import travelmaster.dto.Booking;
+import travelmaster.dto.UserDTO;
+import travelmaster.exception.ResourceNotFoundException;
+import travelmaster.model.User;
+import travelmaster.repository.UserRepository;
+import org.modelmapper.ModelMapper;
+@Service
+public class UserService {
+
+	
+	 private ModelMapper modelMapper;
+	
+	 
+		/*
+		 * @Override public UserDto createUser(UserDto userDto) {
+		 * 
+		 * // Convert UserDto into User JPA Entity // User user =
+		 * UserMapper.mapToUser(userDto);
+		 * 
+		 * User user = modelMapper.map(userDto, User.class);
+		 * 
+		 * User savedUser = userRepository.save(user);
+		 * 
+		 * // Convert User JPA entity to UserDto //UserDto savedUserDto =
+		 * UserMapper.mapToUserDto(savedUser);
+		 * 
+		 * UserDto savedUserDto = modelMapper.map(savedUser, UserDto.class);
+		 * 
+		 * return savedUserDto; }
+		 */
+	 
+	 
+	 
+	 public UserDTO createUserDTO(User user) {
+		    // Map User entity to UserDTO
+		    UserDTO userDto = modelMapper.map(user, UserDTO.class);
+		    
+		    // Save the User entity to the repository
+		    User savedUser = userRepository.save(user);
+		    
+		    // Convert saved User entity back to UserDTO
+		    UserDTO savedUserDto = modelMapper.map(savedUser, UserDTO.class);
+		    
+		    return savedUserDto; // Return the saved UserDTO
+		}
+
+	 
+	 
+	 
+	// Used the Feign Client in My Service Layer
+	
+	@Autowired
+    private BookingClient bookingClient;
+
+    public List<Booking> getUserBookings(Long userId) {
+        // Use the Feign client to get bookings from booking-service
+        return bookingClient.getBookingsByUser(userId);
+    }
+	
+ // Used the Feign Client in My Service Layer
+    @Autowired
+    private HotelClient hotelClient;
+
+    public String getHotelInfo(Long hotelId) {
+        return hotelClient.getHotelById(hotelId);
+    }
+	
+	
+	
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+    }
+
+    public User createUser(User user) {
+        if (user.getEmail() == null) {
+            throw new IllegalArgumentException("Email cannot be null");
+        }
+        
+        
+        
+//        if (userRepository.existsById(user.getUserId())) { // Example check for existing user
+//            throw new IllegalArgumentException("User already exists with ID: " + user.getUserId());
+//        }
+//        System.out.println("Creating user: " + user);
+        
+        
+        
+        return userRepository.save(user);
+    }
+
+    public User updateUser(Long id, User userDetails) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setUsername(userDetails.getUsername());
+                    user.setPassword(userDetails.getPassword());
+                    user.setEmail(userDetails.getEmail());
+                    user.setFirstName(userDetails.getFirstName());
+                    user.setLastName(userDetails.getLastName());
+                    user.setRole(userDetails.getRole());
+                    user.setUpdatedAt(LocalDateTime.now());
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
+    }
+
+    public boolean deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException("User not found with ID: " + id);
+        }
+        userRepository.deleteById(id);
+        return true;
+    }
+}

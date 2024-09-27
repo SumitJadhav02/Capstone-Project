@@ -1,0 +1,5 @@
+package travelmaster.security;
+
+public class JwtUtil {
+
+}

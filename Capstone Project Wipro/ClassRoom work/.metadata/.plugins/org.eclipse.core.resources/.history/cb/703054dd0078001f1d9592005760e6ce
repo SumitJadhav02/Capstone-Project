@@ -1,0 +1,114 @@
+package travelmaster.model;
+
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "expense")
+public class Expense {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "expense_id")
+    private Long expenseId;
+
+    @ManyToOne
+    @JoinColumn(name = "itinerary_id", nullable = false)
+    private Itinerary itinerary;
+
+    @Column(name = "expense_type", nullable = false)
+    private String expenseType;
+
+    @Column(name = "amount", nullable = false)
+    private Double amount;
+
+    @Column(name = "date_incurred", nullable = false)
+    private LocalDateTime dateIncurred;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    // Constructors
+    public Expenses() {
+    }
+
+    public Expenses(Itinerary itinerary, String expenseType, Double amount, LocalDateTime dateIncurred) {
+        this.itinerary = itinerary;
+        this.expenseType = expenseType;
+        this.amount = amount;
+        this.dateIncurred = dateIncurred;
+    }
+
+    // Getters and Setters
+    public Long getExpenseId() {
+        return expenseId;
+    }
+
+    public void setExpenseId(Long expenseId) {
+        this.expenseId = expenseId;
+    }
+
+    public Itinerary getItinerary() {
+        return itinerary;
+    }
+
+    public void setItinerary(Itinerary itinerary) {
+        this.itinerary = itinerary;
+    }
+
+    public String getExpenseType() {
+        return expenseType;
+    }
+
+    public void setExpenseType(String expenseType) {
+        this.expenseType = expenseType;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getDateIncurred() {
+        return dateIncurred;
+    }
+
+    public void setDateIncurred(LocalDateTime dateIncurred) {
+        this.dateIncurred = dateIncurred;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    // Pre-persist and pre-update methods
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+}

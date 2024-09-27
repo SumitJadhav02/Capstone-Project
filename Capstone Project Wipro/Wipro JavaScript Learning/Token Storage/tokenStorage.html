@@ -1,0 +1,95 @@
+<!-- Write a html code to set the token in localStorage and get the token from localStorage-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Storage Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+ 
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+ 
+    input {
+      width: 50%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+ 
+    button {
+      padding: 8px;
+      cursor: pointer;
+    }
+ 
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+ 
+  <h1>Token Storage Example</h1>
+ 
+  <label for="username">Username:</label>
+  <input type="text" id="username" placeholder="Your username">
+ 
+  <label for="password">Password:</label>
+  <input type="password" id="password" placeholder="Your password">
+ 
+  <button onclick="login()">Login</button>
+ 
+  <div id="output">
+    <p>Token:</p>
+    <p id="token">      </p>
+  </div>
+ 
+  <script>
+    // Function to simulate a login and store a token in localStorage
+    function login() {
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const tokenOutput = document.getElementById('token');
+ 
+      const username = usernameInput.value; //James
+      const password = passwordInput.value;//Pass
+ 
+      // Simulate a login request to obtain a token (in a real scenario, this would be an API request)
+      const mockApiResponse = {
+        success: true,
+        token: 'TestToken'
+      };
+ 
+      if (mockApiResponse.success) {
+        // Store the obtained token in localStorage
+        sessionStorage.setItem('local_token', mockApiResponse.token);
+ 
+        // Display the stored token
+        tokenOutput.textContent = mockApiResponse.token;
+ 
+        // You can now use this token for authentication in your application
+      } else {
+        alert('Login failed. Please check your credentials.');
+      }
+    }
+ 
+    // Check if there is a stored token on page load
+    window.onload = function() {
+      //Reading the key local_token from local storage
+      const storedToken = sessionStorage.getItem('local_token');
+ 
+      const tokenOutput = document.getElementById('token');
+ 
+      if (storedToken) {
+        tokenOutput.textContent = storedToken;
+      }
+    };
+  </script>
+ 
+</body>
+</html>

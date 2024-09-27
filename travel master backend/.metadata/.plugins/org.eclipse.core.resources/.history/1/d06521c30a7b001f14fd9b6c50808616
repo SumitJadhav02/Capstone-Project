@@ -1,0 +1,11 @@
+package travelmaster.dto;
+
+public class FlightDTO {
+    private Long flightId;
+    private String flightNumber;
+    private String departure;
+    private String arrival;
+
+    // Getters and Setters
+    // ...
+}

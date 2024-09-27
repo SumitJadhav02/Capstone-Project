@@ -1,0 +1,16 @@
+package travelmaster.service;
+
+import java.util.List;
+
+import travelmaster.model.Booking;
+
+public class BookingService {
+
+	public List<Booking> getAllBooking() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+}

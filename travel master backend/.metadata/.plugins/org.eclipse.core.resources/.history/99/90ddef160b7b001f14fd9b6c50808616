@@ -1,0 +1,9 @@
+package travelmaster.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import travelmaster.dto.UserDTO;
+
+public interface UserRepository extends JpaRepository<UserDTO, Long> {
+
+}

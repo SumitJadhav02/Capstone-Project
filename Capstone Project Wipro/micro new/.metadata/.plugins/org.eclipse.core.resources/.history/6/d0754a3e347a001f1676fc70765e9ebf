@@ -1,0 +1,5 @@
+package travelmaster.dto;
+
+public class ExpenseDTO {
+
+}

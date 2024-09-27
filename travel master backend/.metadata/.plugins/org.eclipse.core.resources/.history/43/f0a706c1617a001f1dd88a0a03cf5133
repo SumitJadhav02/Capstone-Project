@@ -1,0 +1,9 @@
+package travelmaster.config;
+
+@Configuration
+public class ModelMapperConfig {
+	@Beanpublic
+	ModelMapper modelMapper() {
+		returnnewModelMapper();
+	}
+}

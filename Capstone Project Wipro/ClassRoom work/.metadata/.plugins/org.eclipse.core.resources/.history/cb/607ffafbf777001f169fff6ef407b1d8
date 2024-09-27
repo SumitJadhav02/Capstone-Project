@@ -1,0 +1,5 @@
+package com.travelmaster.model;
+
+public class User {
+
+}

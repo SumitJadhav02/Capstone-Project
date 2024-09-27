@@ -1,0 +1,11 @@
+package travelmaster.model;
+
+public class UserRegistrationDTO {
+    private String username;
+    private String password;
+    private String email;
+    private String firstName;
+    private String lastName;
+
+    // Getters and Setters
+}

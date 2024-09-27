@@ -1,0 +1,17 @@
+package travelmaster.pojo;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
+public class Hotel {
+   
+    private Long id;
+    private String hotelName;
+    private String location;
+    private double pricePerNight;
+    private String amenities;
+
+    // Getters and Setters
+}

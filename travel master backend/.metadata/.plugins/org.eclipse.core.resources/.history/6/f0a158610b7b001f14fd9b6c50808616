@@ -1,0 +1,138 @@
+package travelmaster.model;
+
+import jakarta.persistence.*;
+
+import travelmaster.pojo.User;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "bookings")
+public class Booking {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "booking_id")
+	private Long bookingId;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "flight_id", nullable = true)
+	private Fligh flight;
+
+	@ManyToOne
+	@JoinColumn(name = "hotel_id", nullable = true)
+	private Hotel hotel;
+
+	@ManyToOne
+	@JoinColumn(name = "itinerary_id", nullable = true)
+	private Itinerary itinerary;
+
+	@Column(name = "booking_date", nullable = false)
+	private LocalDateTime bookingDate;
+
+	@Column(name = "status", nullable = false)
+	private String status;
+
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at", nullable = false)
+	private LocalDateTime updatedAt;
+
+	public Long getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(Long bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+
+	public FlightDTO getFlight() {
+		return flight;
+	}
+
+	public void setFlight(FlightDTO flight) {
+		this.flight = flight;
+	}
+
+	public HotelDTO getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(HotelDTO hotel) {
+		this.hotel = hotel;
+	}
+
+	public ItineraryDTO getItinerary() {
+		return itinerary;
+	}
+
+	public void setItinerary(ItineraryDTO itinerary) {
+		this.itinerary = itinerary;
+	}
+
+	public LocalDateTime getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(LocalDateTime bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public Booking(Long bookingId, UserDTO user, FlightDTO flight, HotelDTO hotel, ItineraryDTO itinerary,
+			LocalDateTime bookingDate, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+		super();
+		this.bookingId = bookingId;
+		this.user = user;
+		this.flight = flight;
+		this.hotel = hotel;
+		this.itinerary = itinerary;
+		this.bookingDate = bookingDate;
+		this.status = status;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	public Booking() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	// Constructors, Getters, Setters, PrePersist, and PreUpdate methods
+}

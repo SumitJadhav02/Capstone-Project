@@ -1,0 +1,11 @@
+package travelmaster.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class ModelMapperConfig {
+	@Beanpublic
+	ModelMapper modelMapper() {
+		returnnewModelMapper();
+	}
+}

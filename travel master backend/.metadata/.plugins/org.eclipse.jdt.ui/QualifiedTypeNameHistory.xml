@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="travelmaster.exception.UserNotFoundException"/>
+    <fullyQualifiedTypeName name="io.swagger.annotations.Info"/>
+    <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.Operation"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="springfox.documentation.swagger2.mappers.ModelMapper"/>
+    <fullyQualifiedTypeName name="org.modelmapper.ModelMapper"/>
+    <fullyQualifiedTypeName name="travelmaster.dto.UserDTO"/>
+    <fullyQualifiedTypeName name="travelmaster.client.UserClient"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="travelmaster.pojo.Flight"/>
+    <fullyQualifiedTypeName name="travelmaster.model.Itinerary"/>
+    <fullyQualifiedTypeName name="travelmaster.pojo.Itinerary"/>
+    <fullyQualifiedTypeName name="travelmaster.client.HotelClient"/>
+    <fullyQualifiedTypeName name="travelmaster.exception.HotelNotFoundException"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.EnableFeignClients"/>
+    <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="travelmaster.client.ExpenseClient"/>
+    <fullyQualifiedTypeName name="travelmaster.pojo.Expense"/>
+    <fullyQualifiedTypeName name="travelmaster.pojo.User"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Transient"/>
+    <fullyQualifiedTypeName name="travelmaster.service.UserService"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="travelmaster.pojo.Hotel"/>
+</qualifiedTypeNameHistroy>

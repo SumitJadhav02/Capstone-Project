@@ -1,0 +1,14 @@
+package travelmaster.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import travelmaster.pojo.UserPOJO;
+@FeignClient(name = "user-service", url = "${user-service:http://localhost:8001}")
+
+public interface UserClient {
+
+    @GetMapping("/users/{userId}")
+    UserPOJO getUserById(@PathVariable("userId") Long userId);
+}
